@@ -1,7 +1,7 @@
 {
   "name": "school-managment-systeme",
   "private": true,
-  "homepage": "https://louhab.github.io/louhab/advanced-react-advanced",
+  "homepage": "https://louhab.github.io/louhab/reactjs-to-be-deployed-yaml",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -10,7 +10,6 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"
-
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
@@ -20,6 +19,7 @@
     "react-hook-form": "^7.51.3"
   },
   "devDependencies": {
+    "@hookform/devtools": "^4.3.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",

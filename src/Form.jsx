@@ -1,20 +1,21 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
 const Form = () => {
-    const  {register,handleSubmit} = useForm(
+    const  {register, control ,handleSubmit} = useForm(
       {
-        defaultValues: async () =>{
-          const responsePromise  = await fetch("https://jsonplaceholder.typicode.com/users/1")
-          const user = await responsePromise.json()
-          return  { 
-          fullName: user.name ,
-          email: user.email,
-          age: Math.random() * 4,
-          password: "testest",
-          country: "MA"
-          }
-        }
+        // defaultValues: async () =>{
+        //   const responsePromise  = await fetch("https://jsonplaceholder.typicode.com/users/1")
+        //   const user = await responsePromise.json()
+        //   return  { 
+        //   fullName: user.name ,
+        //   email: user.email,
+        //   age: Math.random() * 4,
+        //   password: "testest",
+        //   country: "MA"
+        //   }
+        // }
       }
     )
     const submitForm = (data) => {
@@ -37,27 +38,33 @@ const Form = () => {
 
                         <div className="form-group">
                             <label>Age</label>
-                            <input className='form-control' type="text" {...register("age" , {...register("fullName" ,{
-                              required:true,
-                              minLength:5
-                            } )})}/>
+                            <input className='form-control' type="text" {...register("age" ,
+                              {
+                                required:true,
+                                minLength:5
+                              }
+                              )}/>
                         </div>
 
                         <div className="form-group">
                             <label>Password</label>
-                            <input className='form-control' type="password" {...register("password" , {...register("fullName" , {
+                            <input className='form-control' type="password" {...register("password" , {
                                   required:true,
                                   minLength:5
-                            } 
-                            )})}/>
+                            
+                            })}/>
                         </div>
 
                         <div className="form-group">
                             <label>Email</label>
                             <input className='form-control' type="email" {...register("email" ,{
                                   required:true,
-                                  minLength:5
-                            }  )}/>
+                                  minLength:5,
+                                  pattern: {
+                                    value: /^\S+@\S+\.\S+$/,
+                                    message: 'Invalid Email'
+                                  }                      
+                                 }  )}/>
                         </div>
 
                         <div className="form-group">
@@ -74,10 +81,10 @@ const Form = () => {
                         </div>
 
                         <div className="my-3">
-                            <input className='btn btn-primary'
-                                   type="submit" value='Submit'/>
+                            <input className='btn btn-primary' type="submit" value='Submit'/>
                         </div>
                     </form>
+                    <DevTool control={control} />
                 </div>
             </div>
         </div>
@@ -85,3 +92,6 @@ const Form = () => {
 };
 
 export default Form;
+
+
+
